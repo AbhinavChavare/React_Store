@@ -3,11 +3,24 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { AppContextProvider } from './Context/AppContext';
+import { SecContextProvider } from './Context/SecContext';
+import store from "./Store"
+import { Provider } from 'react-redux';
+
+store.subscribe(()=>store.getState())
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+<Provider store={store}>
+   <AppContextProvider>
+<SecContextProvider>
     <App />
+</SecContextProvider>
+    </AppContextProvider>
+</Provider>
   </React.StrictMode>
 );
 
